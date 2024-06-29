@@ -1,103 +1,93 @@
-﻿F14::
-    ; Restarts file explorer 
-    ; Press Windows Key + R
+﻿#SingleInstance
+msgbox % "my ahk version: " A_AhkVersion
+; Path to the VirtualDesktop executable
+VirtualDesktopPath := "VirtualDesktop11.exe"
+;; RESTART FILE EXPLORER
+F24::
+    Run, "%userprofile%\Documents\batch files\winex.bat", , Hide
+return
+;; OPEN FILE EXPLORER 
+#f::
+    Run, "explorer.exe"
+return
+;; MEDIA CONTROLS
+#b::
+    Send {Media_Prev}
+return 
+#j::
+    Send {Media_Next}
+return
+#Space:: 
+    Send {Media_Play_Pause}
+return
+;; OPEN CALCULATOR 
+#c:: 
+    Run, "C:\Windows\System32\calc.exe"
+return
+;; WINDOWS RUN COMMAND
+#z::
     Send, #r
-    ; Wait for the Run dialog to appear
-    Sleep, 500
-    ; Type the path to the batch file
-    SendInput, Documents\batch files\winex.bat
-    ; Wait a bit before pressing Enter
-    Sleep, 50
-    ; Press Enter
-    Send, {Enter}
+return
+
+;; CLOSE WINDOW
+#x::
+    Send, !{F4}
+return
+;; OPEN THE WINDOWS X MENU
+#d::
+    Send, #x
+return
+
+;; VIRTUAL DESKTOP NAVIGATIONS
+F13::
+    Run, "VirtualDesktop11.exe" "-Switch:Research", , Hide
+return
+
+F14::
+    Run, "VirtualDesktop11.exe" "-Switch:Code", ,Hide
 return
 
 F15::
-    ; Used to change the default browser to Chrome
-    ; Open windows run dialog 
-    Send, #r
-    Sleep, 250
-    ; Enter the default apps settins
-    SendInput, ms-settings:defaultapps
-    Sleep, 250
-    Send, {Enter}
-    
-    ; Wait for 1 second (1000 milliseconds)
-    Sleep, 1000
-    
-    ; Press Tab four times
-    Send, {Tab 4}
-    Sleep, 100
-    
-    ; Type "chrome"
-    SendInput, chrome
-    Sleep, 10
-    ; Press Tab
-    Send, {Tab}
-    
-    ; Press Enter
-    Send, {Enter}
-    Sleep, 100
-    Send {Enter}
-    
-    ; Wait for a moment before sending Alt+F4
-    Sleep, 1500
-    
-    ; Send Alt+F4 to close the Settings window
-    Send, !{F4}
+    Run, "VirtualDesktop11.exe" "-Switch:Design", ,Hide
 return
 
 F16::
-    ; Used to change the default browser to edge
-    ; Open windows run dialog 
-    Send, #r
-    Sleep, 250
-    ; Enter the default apps settins
-    SendInput, ms-settings:defaultapps
-    Sleep, 250
-    Send, {Enter}
-    
-    ; Wait for 1 second (1000 milliseconds)
-    Sleep, 1000
-    
-    ; Press Tab four times
-    Send, {Tab 4}
-    Sleep, 1000
-    ; Type "edge"
-    SendInput, edge
-    Sleep, 10
-    ; Press Tab
-    Send, {Tab}
-    
-    ; Press Enter
-    Send, {Enter}
-    Sleep, 100
-    Send {Enter}
-    
-    ; Wait for a moment before sending Alt+F4
-    Sleep, 1500
-    
-    ; Send Alt+F4 to close the Settings window
-    Send, !{F4}
+    Run, "VirtualDesktop11.exe" "-Switch:Preview", ,Hide
 return
 
 F17::
-    ; Retype whatever is on the clipboard
-    Clipboard := ClipboardAll
-    SendRaw, %Clipboard%
+    Run, "VirtualDesktop11.exe" "-Switch:Spotify", ,Hide
 return
 
-/* A previous attempt at escaping curly braces before I knew of the SendRaw feature
-EscapeCurly(text) {
-    Loop, Parse, text
-    {
-        if (A_LoopField == "{")
-            str .= "{{}"
-        else if (A_LoopField == "}")
-            str .= "{}}"
-        else
-            str .= A_LoopField
-    }
-    return str
-}
-*/
+F18::
+    Run, "VirtualDesktop11.exe" "-Switch:Discord", ,Hide
+return
+
+F19:: 
+    Run, "VirtualDesktop11.exe" "-Switch:GPT", ,Hide
+return
+
+F20::
+    Run, "VirtualDesktop11.exe" "-Switch:Notes", ,Hide
+return
+
+F21::
+    Run, "VirtualDesktop11.exe" "-Switch:System", ,Hide
+return
+
+;; WINDOW NAVIGATIONS
+#a::
+    Send, #{Left}
+return
+
+#s::
+    Send, #{Right}
+return
+
+#w::
+    Send, #{Up}
+return
+
+#r:: 
+    Send, #{Down}
+return
